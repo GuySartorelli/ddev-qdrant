@@ -1,0 +1,28 @@
+#ddev-generated
+# addon for qdrant
+services:
+  qdrant:
+    image: qdrant/qdrant:latest
+    restart: always
+    container_name: ddev-${DDEV_SITENAME}-qdrant
+    labels:
+      com.ddev.site-name: ${DDEV_SITENAME}
+      com.ddev.approot: $DDEV_APPROOT
+    expose:
+      - 6333
+      - 6334
+      - 6335
+    environment:
+      - VIRTUAL_HOST=$DDEV_HOSTNAME
+      - HTTPS_EXPOSE=6334:6334
+      - HTTPS_EXPOSE=6333:6333
+    configs:
+      - source: qdrant_config
+        target: /qdrant/config/production.yaml
+    volumes:
+      - ./qdrant_data:/qdrant/storage
+
+configs:
+  qdrant_config:
+    content: |
+      log_level: INFO      
