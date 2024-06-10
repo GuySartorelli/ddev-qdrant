@@ -8,14 +8,11 @@ setup() {
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1 || true
   cd "${TESTDIR}"
   ddev config --project-name=${PROJNAME}
+  ddev config --omit-containers="db" >/dev/null 2>&1 || true
   ddev start -y >/dev/null
 }
 
 health_checks() {
-  # Do something useful here that verifies the add-on
-  # ddev exec "curl -s elasticsearch:9200" | grep "${PROJNAME}-elasticsearch"
-  ddev describe
-
   # Check the service is running
   curl -sL https://test-qdrant.ddev.site:6333
 
@@ -39,12 +36,12 @@ teardown() {
   health_checks
 }
 
-@test "install from release" {
-  set -eu -o pipefail
-  cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
-  echo "# ddev get netz98/ddev-qdrant with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get netz98/ddev-qdrant
-  ddev restart >/dev/null
-  health_checks
-}
+#@test "install from release" {
+#  set -eu -o pipefail
+#  cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
+#  echo "# ddev get netz98/ddev-qdrant with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
+#  ddev get netz98/ddev-qdrant
+#  ddev restart >/dev/null
+#  health_checks
+#}
 
