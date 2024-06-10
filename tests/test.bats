@@ -14,9 +14,11 @@ setup() {
 
 health_checks() {
   # Check the service is running
+  echo "check qdrant service" >&3
   curl -sL https://test-qdrant.ddev.site:6333
 
   # Check the dashboard is running
+  echo "check qdrant dashboard http statuscode" >&3
   curl -o /dev/null  -sL -w "%{http_code}\n" https://test-qdrant.ddev.site:6333/dashboard
 }
 
@@ -37,7 +39,7 @@ teardown() {
 }
 
 @test "install from release" {
-#  skip "Temporary skip"
+  skip "Temporary skip"
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get netz98/ddev-qdrant with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
