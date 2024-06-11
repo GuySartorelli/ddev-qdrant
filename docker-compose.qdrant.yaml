@@ -27,4 +27,8 @@ services:
 configs:
   qdrant_config:
     content: |
-      log_level: INFO      
+      log_level: INFO
+      telemetry_disabled: true
+
+volumes:
+  qdrant_data:
