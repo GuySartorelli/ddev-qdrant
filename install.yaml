@@ -1,5 +1,5 @@
 name: qdrant
 
 project_files:
-- qdrant_data/
+- qdrant_data
 - docker-compose.qdrant.yaml
