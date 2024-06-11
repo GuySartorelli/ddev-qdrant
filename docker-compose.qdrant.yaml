@@ -21,6 +21,8 @@ services:
         target: /qdrant/config/production.yaml
     volumes:
       - ./qdrant_data:/qdrant/storage
+      - ".:/mnt/ddev_config"
+      - "ddev-global-cache:/mnt/ddev-global-cache"
 
 configs:
   qdrant_config:
