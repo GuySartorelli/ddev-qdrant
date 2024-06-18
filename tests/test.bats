@@ -27,7 +27,11 @@ teardown() {
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   ddev stop ${PROJNAME}
   ddev delete -Oy ${PROJNAME} >/dev/null 2>&1
-  [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
+  if [ "${GITHUB_ACTIONS:-false}" != "true" ]; then
+    [ "${TESTDIR}" != "" ] && rm -rf ${TESTDIR}
+  else
+    echo "Running in GitHub Actions context, skipping deletion of test data"
+  fi
 }
 
 @test "install from directory" {
