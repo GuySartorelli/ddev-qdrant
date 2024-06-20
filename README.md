@@ -23,7 +23,7 @@ Different clients can be found  in [qdrant Github](https://github.com/qdrant/qdr
 Settings are in general defined in the file `.ddev/docker-compose.qdrant.yaml` via environment variables.
 
 An overview of the possible configrations can be found here:
-https://github.com/qdrant/demo-distributed-deployment-docker
+https://qdrant.tech/documentation/guides/configuration/#configuration
 
 ### Collections
 
