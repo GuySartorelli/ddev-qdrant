@@ -43,12 +43,11 @@ teardown() {
   health_checks
 }
 
-@test "install from release" {
-  skip "Temporary skip"
+@test "install from main branch" {
   set -eu -o pipefail
   cd ${TESTDIR} || ( printf "unable to cd to ${TESTDIR}\n" && exit 1 )
   echo "# ddev get netz98/ddev-qdrant with project ${PROJNAME} in ${TESTDIR} ($(pwd))" >&3
-  ddev get netz98/ddev-qdrant
+  ddev get https://github.com/netz98/ddev-qdrant/tarball/main
   ddev restart >/dev/null
   health_checks
 }
