@@ -4,8 +4,23 @@ This addon sets up a qdrant instance for your DDEV project. qdrant is a vector s
 
 ## Installation
 
-1. Run `ddev get netz98/ddev-qdrant` to install the addon in your exiting ddev project.
-2. `ddev restart` to restart your project.
+To install the addon in your exiting ddev project, for DDEV v1.23.5 or above run
+
+```sh
+ddev add-on get netz98/ddev-qdrant
+```
+
+For earlier versions of DDEV run
+
+```sh
+ddev get netz98/ddev-qdrant
+```
+
+Then restart your project
+
+```sh
+ddev restart
+```
 
 ## Usage
 
